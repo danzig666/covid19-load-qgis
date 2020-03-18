@@ -34,12 +34,12 @@ with open(deaths, "w") as f2:
 
 # Load Confirmed Cases CSV to QGIS
 cases_latest = next(csv.reader(open(cases)))[-1].replace("/","-")
-cases_local = "file://{uri}?delimiter={delimiter}&crs=epsg:4326&xField={x}&yField={y}".format(uri=cases, delimiter=",", x="Long", y="Lat")
+cases_local = "file:///{uri}?type=csv&detectTypes=yes&subsetIndex=no&watchFile=no&delimiter={delimiter}&crs=epsg:4326&xField={x}&yField={y}".format(uri=cases, delimiter=",", x="Long", y="Lat")
 cases_layer = QgsVectorLayer(cases_local, "covid19-cases-as-of-{latest}".format(latest=cases_latest), "delimitedtext")
 QgsProject.instance().addMapLayer(cases_layer)
 
 #Load Deaths CSV to QGIS
 deaths_latest = next(csv.reader(open(deaths)))[-1].replace("/","-")
-deaths_local = "file://{uri}?delimiter={delimiter}&crs=epsg:4326&xField={x}&yField={y}".format(uri=deaths, delimiter=",", x="Long", y="Lat")
+deaths_local = "file:///{uri}?type=csv&detectTypes=yes&subsetIndex=no&watchFile=no&delimiter={delimiter}&crs=epsg:4326&xField={x}&yField={y}".format(uri=deaths, delimiter=",", x="Long", y="Lat")
 deaths_layer = QgsVectorLayer(deaths_local, "covid19-deaths-as-of-{latest}".format(latest=deaths_latest), "delimitedtext")
 QgsProject.instance().addMapLayer(deaths_layer)
